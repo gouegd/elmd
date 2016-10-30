@@ -2,7 +2,7 @@ module Main exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (onInput)
-import Html.Attributes exposing (placeholder)
+import Html.Attributes exposing (placeholder, cols)
 import Html.App as Html
 import Markdown exposing (Options, toHtmlWith, defaultOptions)
 import Material
@@ -59,7 +59,7 @@ view model =
             ]
             [ text "Format tables and line breaks as on Github" ]
         , br [] []
-        , textarea [ onInput Entry, placeholder "Type _some_ **Markdown** here..." ] []
+        , textarea [ cols 100, onInput Entry, placeholder "Type _some_ **Markdown** here..." ] []
         , toHtmlWith (whichOptions model.fullGithubMode) [] model.text
         ]
 

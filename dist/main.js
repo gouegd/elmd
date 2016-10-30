@@ -13616,6 +13616,7 @@ var _gouegd$elmd$Main$view = function (model) {
 				_elm_lang$html$Html$textarea,
 				_elm_lang$core$Native_List.fromArray(
 					[
+						_elm_lang$html$Html_Attributes$cols(100),
 						_elm_lang$html$Html_Events$onInput(_gouegd$elmd$Main$Entry),
 						_elm_lang$html$Html_Attributes$placeholder('Type _some_ **Markdown** here...')
 					]),
