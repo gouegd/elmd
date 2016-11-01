@@ -13572,7 +13572,7 @@ var _gouegd$elmd$Main$update = F2(
 				return A2(_debois$elm_mdl$Material$update, _p1._0, model);
 		}
 	});
-var _gouegd$elmd$Main$startupText = '\nChange the contents of the `textarea` above !\n\n| name | version\n|:-----|------:\n| elmd | 1.0.0\n';
+var _gouegd$elmd$Main$startupText = 'Change the contents of the `textarea` above !\n\n| name | version\n|:-----|------:\n| elmd | 1.0.0\n';
 var _gouegd$elmd$Main$init = {
 	ctor: '_Tuple2',
 	_0: {text: _gouegd$elmd$Main$startupText, fullGithubMode: true, mdl: _debois$elm_mdl$Material$model},
@@ -13593,7 +13593,15 @@ var _gouegd$elmd$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'display', _1: 'flex'},
+						{ctor: '_Tuple2', _0: 'flex-direction', _1: 'column'},
+						{ctor: '_Tuple2', _0: 'height', _1: '100vh'}
+					]))
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A5(
@@ -13606,48 +13614,61 @@ var _gouegd$elmd$Main$view = function (model) {
 					[
 						_debois$elm_mdl$Material_Toggles$onClick(_gouegd$elmd$Main$ToggleGithubMode),
 						_debois$elm_mdl$Material_Toggles$ripple,
-						_debois$elm_mdl$Material_Toggles$value(model.fullGithubMode)
+						_debois$elm_mdl$Material_Toggles$value(model.fullGithubMode),
+						A2(_debois$elm_mdl$Material_Options$css, 'flex', 'none'),
+						A2(_debois$elm_mdl$Material_Options$css, 'vertical', 'none'),
+						A2(_debois$elm_mdl$Material_Options$css, 'color', '#CCCCCC'),
+						A2(_debois$elm_mdl$Material_Options$css, 'background', '#333333')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html$text('Format tables and line breaks as on Github')
 					])),
 				A2(
-				_elm_lang$html$Html$br,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A2(
-				_elm_lang$html$Html$textarea,
+				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html_Attributes$style(
 						_elm_lang$core$Native_List.fromArray(
 							[
-								{ctor: '_Tuple2', _0: 'width', _1: '100vw'},
-								{ctor: '_Tuple2', _0: 'height', _1: '40vh'},
-								{ctor: '_Tuple2', _0: 'font-family', _1: 'Monospace'},
-								{ctor: '_Tuple2', _0: 'background', _1: '#CCCCFF'}
-							])),
-						_elm_lang$html$Html_Events$onInput(_gouegd$elmd$Main$Entry),
-						_elm_lang$html$Html_Attributes$placeholder('Type _some_ **Markdown** here...')
+								{ctor: '_Tuple2', _0: 'display', _1: 'flex'},
+								{ctor: '_Tuple2', _0: 'flex', _1: 'auto'},
+								{ctor: '_Tuple2', _0: 'overflow', _1: 'hidden'}
+							]))
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text(model.text)
-					])),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
+						A2(
+						_elm_lang$html$Html$textarea,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'flex', _1: '1'},
+										{ctor: '_Tuple2', _0: 'font-family', _1: 'Monospace'},
+										{ctor: '_Tuple2', _0: 'background', _1: '#CCCCFF'},
+										{ctor: '_Tuple2', _0: 'overflow', _1: 'scroll'}
+									])),
+								_elm_lang$html$Html_Events$onInput(_gouegd$elmd$Main$Entry),
+								_elm_lang$html$Html_Attributes$placeholder('Type _some_ **Markdown** here...')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(model.text)
+							])),
 						A3(
 						_evancz$elm_markdown$Markdown$toHtmlWith,
 						_gouegd$elmd$Main$whichOptions(model.fullGithubMode),
 						_elm_lang$core$Native_List.fromArray(
-							[]),
+							[
+								_elm_lang$html$Html_Attributes$style(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'flex', _1: '1'},
+										{ctor: '_Tuple2', _0: 'overflow', _1: 'scroll'}
+									]))
+							]),
 						model.text)
 					]))
 			]));

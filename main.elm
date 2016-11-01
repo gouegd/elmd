@@ -7,6 +7,7 @@ import Html.App as Html
 import Markdown exposing (Options, toHtmlWith, defaultOptions)
 import Material
 import Material.Toggles as Toggles
+import Material.Options exposing (css)
 
 
 main : Program Never
@@ -31,8 +32,7 @@ type Msg
 
 startupText : String
 startupText =
-    """
-Change the contents of the `textarea` above !
+    """Change the contents of the `textarea` above !
 
 | name | version
 |:-----|------:
@@ -60,32 +60,41 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div
+        [ style
+            [ ( "display", "flex" )
+            , ( "flex-direction", "column" )
+            , ( "height", "100vh" )
+            ]
+        ]
         [ Toggles.switch Mdl
             [ 0 ]
             model.mdl
             [ Toggles.onClick ToggleGithubMode
             , Toggles.ripple
             , Toggles.value model.fullGithubMode
+            , css "flex" "none"
+            , css "vertical" "none"
+            , css "color" "#CCCCCC"
+            , css "background" "#333333"
             ]
             [ text "Format tables and line breaks as on Github" ]
-        , br [] []
-        , textarea
-            [ style
-                [ ( "width", "100vw" )
-                , ( "height", "40vh" )
-                , ( "font-family", "Monospace" )
-                , ( "background", "#CCCCFF" )
-                ]
-            , onInput Entry
-            , placeholder "Type _some_ **Markdown** here..."
-            ]
-            [ text model.text ]
         , div
-            []
-            [ toHtmlWith
+            [ style [ ( "display", "flex" ), ( "flex", "auto" ), ( "overflow", "hidden" ) ] ]
+            [ textarea
+                [ style
+                    [ ( "flex", "1" )
+                    , ( "font-family", "Monospace" )
+                    , ( "background", "#CCCCFF" )
+                    , ( "overflow", "scroll" )
+                    ]
+                , onInput Entry
+                , placeholder "Type _some_ **Markdown** here..."
+                ]
+                [ text model.text ]
+            , toHtmlWith
                 (whichOptions model.fullGithubMode)
-                []
+                [ style [ ( "flex", "1" ), ( "overflow", "scroll" ) ] ]
                 model.text
             ]
         ]
