@@ -13539,18 +13539,23 @@ var _gouegd$elmd$Main$fullGithub = _elm_lang$core$Native_Utils.update(
 	});
 var _gouegd$elmd$Main$basicGithub = _evancz$elm_markdown$Markdown$defaultOptions;
 var _gouegd$elmd$Main$whichOptions = function (fullGithubMode) {
-	return fullGithubMode ? _gouegd$elmd$Main$fullGithub : _gouegd$elmd$Main$basicGithub;
+	var _p0 = fullGithubMode;
+	if (_p0 === true) {
+		return _gouegd$elmd$Main$fullGithub;
+	} else {
+		return _gouegd$elmd$Main$basicGithub;
+	}
 };
 var _gouegd$elmd$Main$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
 			case 'Entry':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{text: _p0._0}),
+						{text: _p1._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ToggleGithubMode':
@@ -13564,12 +13569,13 @@ var _gouegd$elmd$Main$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				return A2(_debois$elm_mdl$Material$update, _p0._0, model);
+				return A2(_debois$elm_mdl$Material$update, _p1._0, model);
 		}
 	});
+var _gouegd$elmd$Main$startupText = '\nChange the contents of the `textarea` above !\n\n| name | version\n|:-----|------:\n| elmd | 1.0.0\n';
 var _gouegd$elmd$Main$init = {
 	ctor: '_Tuple2',
-	_0: {text: '', fullGithubMode: true, mdl: _debois$elm_mdl$Material$model},
+	_0: {text: _gouegd$elmd$Main$startupText, fullGithubMode: true, mdl: _debois$elm_mdl$Material$model},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 var _gouegd$elmd$Main$Model = F3(
@@ -13616,18 +13622,34 @@ var _gouegd$elmd$Main$view = function (model) {
 				_elm_lang$html$Html$textarea,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$cols(100),
+						_elm_lang$html$Html_Attributes$style(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{ctor: '_Tuple2', _0: 'width', _1: '100vw'},
+								{ctor: '_Tuple2', _0: 'height', _1: '40vh'},
+								{ctor: '_Tuple2', _0: 'font-family', _1: 'Monospace'},
+								{ctor: '_Tuple2', _0: 'background', _1: '#CCCCFF'}
+							])),
 						_elm_lang$html$Html_Events$onInput(_gouegd$elmd$Main$Entry),
 						_elm_lang$html$Html_Attributes$placeholder('Type _some_ **Markdown** here...')
 					]),
 				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A3(
-				_evancz$elm_markdown$Markdown$toHtmlWith,
-				_gouegd$elmd$Main$whichOptions(model.fullGithubMode),
+					[
+						_elm_lang$html$Html$text(model.text)
+					])),
+				A2(
+				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
-				model.text)
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A3(
+						_evancz$elm_markdown$Markdown$toHtmlWith,
+						_gouegd$elmd$Main$whichOptions(model.fullGithubMode),
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						model.text)
+					]))
 			]));
 };
 var _gouegd$elmd$Main$main = {
@@ -13636,7 +13658,7 @@ var _gouegd$elmd$Main$main = {
 			init: _gouegd$elmd$Main$init,
 			update: _gouegd$elmd$Main$update,
 			view: _gouegd$elmd$Main$view,
-			subscriptions: function (_p1) {
+			subscriptions: function (_p2) {
 				return _elm_lang$core$Platform_Sub$none;
 			}
 		})
